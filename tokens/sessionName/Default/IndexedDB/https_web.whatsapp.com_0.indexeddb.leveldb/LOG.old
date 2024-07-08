@@ -1,0 +1,37 @@
+2024/07/07-18:31:16.625 11ec Reusing MANIFEST E:\xampp\htdocs\Mern stack\mern-stack\backend\tokens\sessionName\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/07/07-18:31:16.625 11ec Recovering log #237
+2024/07/07-18:31:16.628 11ec Reusing old log E:\xampp\htdocs\Mern stack\mern-stack\backend\tokens\sessionName\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000237.log 
+2024/07/07-18:31:16.629 11ec Delete type=2 #233
+2024/07/07-18:31:16.629 11ec Delete type=2 #234
+2024/07/07-18:31:16.629 11ec Delete type=2 #235
+2024/07/07-18:31:16.629 11ec Delete type=2 #236
+2024/07/07-18:31:31.178 1684 Level-0 table #245: started
+2024/07/07-18:31:31.628 1684 Level-0 table #245: 40733 bytes OK
+2024/07/07-18:31:32.005 1684 Delete type=0 #237
+2024/07/07-18:31:32.009 1684 Manual compaction at level-0 from '\x00D\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00E\x00\x00\x00' @ 0 : 0; will stop at '\x00E\x00\x00\x05' @ 626645 : 1
+2024/07/07-18:31:32.009 1684 Compacting 1@0 + 4@1 files
+2024/07/07-18:31:39.628 1684 Generated table #246@0: 224475 keys, 2415617 bytes
+2024/07/07-18:31:44.140 1684 Generated table #247@0: 34181 keys, 2193842 bytes
+2024/07/07-18:31:48.157 1684 Generated table #248@0: 24464 keys, 2201167 bytes
+2024/07/07-18:31:51.006 1684 Generated table #249@0: 67874 keys, 2007619 bytes
+2024/07/07-18:31:51.006 1684 Compacted 1@0 + 4@1 files => 8818245 bytes
+2024/07/07-18:31:51.255 1684 compacted to: files[ 0 4 1 0 0 0 0 ]
+2024/07/07-18:31:51.384 1684 Delete type=2 #245
+2024/07/07-18:31:51.423 2c70 Manual compaction at level-0 from '\x00E\x00\x00\x05' @ 626645 : 1 .. '\x00E\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/07/07-18:31:51.424 2c70 Level-0 table #251: started
+2024/07/07-18:31:51.668 2c70 Level-0 table #251: 10065 bytes OK
+2024/07/07-18:31:51.973 2c70 Delete type=2 #239
+2024/07/07-18:31:51.976 2c70 Delete type=2 #240
+2024/07/07-18:31:51.985 2c70 Delete type=2 #241
+2024/07/07-18:31:51.986 2c70 Delete type=2 #242
+2024/07/07-18:31:51.987 2c70 Delete type=0 #244
+2024/07/07-18:31:52.380 1684 Manual compaction at level-0 from '\x00E\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00F\x00\x00\x00' @ 0 : 0; will stop at '\x00E\x00\x00\x05' @ 627618 : 0
+2024/07/07-18:31:52.380 1684 Compacting 1@0 + 4@1 files
+2024/07/07-18:31:58.236 1684 Generated table #252@0: 224649 keys, 2415147 bytes
+2024/07/07-18:31:59.851 1684 Generated table #253@0: 34198 keys, 2192976 bytes
+2024/07/07-18:32:02.459 1684 Generated table #254@0: 24415 keys, 2202257 bytes
+2024/07/07-18:32:04.861 1684 Generated table #255@0: 67932 keys, 2014845 bytes
+2024/07/07-18:32:04.862 1684 Compacted 1@0 + 4@1 files => 8825225 bytes
+2024/07/07-18:32:05.058 1684 compacted to: files[ 0 4 1 0 0 0 0 ]
+2024/07/07-18:32:05.416 1684 Delete type=2 #251
+2024/07/07-18:32:05.578 2c70 Manual compaction at level-0 from '\x00E\x00\x00\x05' @ 627618 : 0 .. '\x00F\x00\x00\x00' @ 0 : 0; will stop at (end)
