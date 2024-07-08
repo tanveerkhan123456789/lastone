@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const venom = require('venom-bot');
 const path = require('path');
 const fs = require('fs');
