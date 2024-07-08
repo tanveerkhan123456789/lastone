@@ -2,13 +2,17 @@ const venom = require('venom-bot');
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const { MongoClient } = require('mongodb');
 const multer = require('multer');
+const { Online_db_connection, local_db_connection } = require('./database/index');
 
 // Multer storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./public/uploads");
+        const dir = "./public/uploads";
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+        cb(null, dir);
     },
     filename: function (req, file, cb) {
         cb(null, `${Date.now()}_${file.originalname}`);
@@ -17,23 +21,6 @@ const storage = multer.diskStorage({
 
 // Multer setup
 const upload = multer({ storage });
-
-// // MongoDB setup
-// const uri = 'mongodb://localhost:27017'; // Replace with your MongoDB URI
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// const dbName = 'whatsappBot';
-// let db;
-
-// async function connectToMongo() {
-//     try {
-//         await client.connect();
-//         console.log('Connected to MongoDB');
-//         db = client.db(dbName);
-//     } catch (err) {
-//         console.error('Failed to connect to MongoDB', err);
-//         process.exit(1); // Exit process if MongoDB connection fails
-//     }
-// }
 
 // Venom-bot setup with conditional headless option
 async function startVenom() {
@@ -132,24 +119,24 @@ app.post('/send', upload.single('image'), async (req, res) => {
             }
         };
 
-        await db.collection('messages').insertOne(messageDetails);
+        await mongoose.connection.collection('messages').insertOne(messageDetails);
 
-        res.json({ 
-            success: true, 
-            logs 
+        res.json({
+            success: true,
+            logs
         });
     } catch (err) {
         console.error('Error sending message:', err);
         logs.push(`Error sending message: ${err.message}`);
-        res.status(500).json({ 
-            success: false, 
-            logs 
+        res.status(500).json({
+            success: false,
+            logs
         });
     }
 });
 
 // Start the server
-connectToMongo().then(() => {
+Online_db_connection().then(() => {
     app.listen(port, () => {
         console.log(`Server started on port ${port}`);
     });
