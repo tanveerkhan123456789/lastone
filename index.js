@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-
 const venom = require('venom-bot');
 const path = require('path');
 const fs = require('fs');
+const mongoose = require('mongoose');
 const express = require('express');
 const multer = require('multer');
 const { Online_db_connection, local_db_connection } = require('./database/index');
@@ -24,7 +23,8 @@ const storage = multer.diskStorage({
 // Multer setup
 const upload = multer({ storage });
 
-// Venom-bot setup with conditional headless option
+// Venom-bot setup with persistent session
+let venomClient;
 async function startVenom() {
     const sessionName = 'sessionName';
     const sessionFolder = path.join(__dirname, 'briway-sessions', sessionName);
@@ -34,8 +34,7 @@ async function startVenom() {
     console.log(`Session stored: ${isSessionStored}`);
 
     try {
-        // Start Venom bot
-        const venomClient = await venom.create(
+        venomClient = await venom.create(
             sessionName,
             (base64Qr, asciiQR, attempts, urlCode) => {
                 console.log('QR Code:');
@@ -54,7 +53,6 @@ async function startVenom() {
         );
 
         console.log('Venom bot session started successfully');
-        return venomClient;
     } catch (err) {
         console.error('Venom encountered an error:', err);
         throw err; // Propagate the error to handle it elsewhere if needed
@@ -87,9 +85,11 @@ app.post('/send', upload.single('image'), async (req, res) => {
     const logs = [];
 
     try {
-        logs.push('Starting Venom bot session...');
-        const venomClient = await startVenom();
-        logs.push('Venom bot session started.');
+        if (!venomClient) {
+            logs.push('Starting Venom bot session...');
+            await startVenom();
+            logs.push('Venom bot session started.');
+        }
 
         const chatId = `${number}@c.us`;
 
@@ -138,7 +138,8 @@ app.post('/send', upload.single('image'), async (req, res) => {
 });
 
 // Start the server
-Online_db_connection().then(() => {
+local_db_connection().then(async () => {
+    await startVenom();
     app.listen(port, () => {
         console.log(`Server started on port ${port}`);
     });
