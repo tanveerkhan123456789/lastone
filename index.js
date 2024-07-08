@@ -18,22 +18,22 @@ const storage = multer.diskStorage({
 // Multer setup
 const upload = multer({ storage });
 
-// MongoDB setup
-const uri = 'mongodb://localhost:27017'; // Replace with your MongoDB URI
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-const dbName = 'whatsappBot';
-let db;
+// // MongoDB setup
+// const uri = 'mongodb://localhost:27017'; // Replace with your MongoDB URI
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// const dbName = 'whatsappBot';
+// let db;
 
-async function connectToMongo() {
-    try {
-        await client.connect();
-        console.log('Connected to MongoDB');
-        db = client.db(dbName);
-    } catch (err) {
-        console.error('Failed to connect to MongoDB', err);
-        process.exit(1); // Exit process if MongoDB connection fails
-    }
-}
+// async function connectToMongo() {
+//     try {
+//         await client.connect();
+//         console.log('Connected to MongoDB');
+//         db = client.db(dbName);
+//     } catch (err) {
+//         console.error('Failed to connect to MongoDB', err);
+//         process.exit(1); // Exit process if MongoDB connection fails
+//     }
+// }
 
 // Venom-bot setup with conditional headless option
 async function startVenom() {
